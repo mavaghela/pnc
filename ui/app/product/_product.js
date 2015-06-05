@@ -55,6 +55,9 @@
         }
       },
     });
+    //alert('IM HERE!!!!!!!!!!!!!!!!!1');
+    //alert(restClient);
+
 
     $stateProvider.state('product.detail', {
       url: '/product/{productId:int}',
@@ -75,10 +78,12 @@
         },
       }
     });
-    
+
     $stateProvider.state('product.version', {
+
       //parent: 'product.detail',
       url: '/product/{productId:int}/version/{versionId:int}',
+      //url: '/product/{productId:int}/version/{versionId:int}/configuration-set/{configurationSetId:int}',
       templateUrl: 'product/views/product.version.html',
       data: {
          displayName: '{{ versionDetail.version }}'
@@ -114,6 +119,16 @@
           return restClient.Milestone.getAllForProductVersion({
             versionId: $stateParams.versionId }).$promise;
         },
+        //records: function(restClient, $stateParams) {
+        //  return (restClient.RecordSet.getAllForProductVersion({
+        //    versionId: $stateParams.versionId}).$promise).buildRecordIds;
+        //}
+
+        records: function(restClient, $stateParams) {
+          return restClient.RecordSet.getAllForProductVersion({
+            versionId: $stateParams.versionId}).$promise;
+        }
+
       }
     });
 
@@ -148,5 +163,5 @@
     });
 
   }]);
-  
+
 })();

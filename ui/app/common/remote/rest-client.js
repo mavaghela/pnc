@@ -244,8 +244,9 @@
         },{
           getAllForProductVersion: {
             method: 'GET',
-            url: REST_DEFAULTS.BASE_URL + '/build-record-sets/product-versions/:versionId',
-            isArray: true
+            //url: REST_DEFAULTS.BASE_URL + '/build-record-sets/product-versions/:versionId',
+            url: REST_DEFAULTS.BASE_URL + '/build-record-sets/:versionId',
+            //isArray: true
           },
           getRecords: {
             method: 'GET',

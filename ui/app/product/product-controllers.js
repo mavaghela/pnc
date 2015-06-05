@@ -149,9 +149,11 @@
     'buildConfigurations',
     'productReleases',
     'productMilestones',
+    'records',
     'Notifications',
     'PncRestClient',
-    function ($log, $state, productDetail, versionDetail, buildConfigurationSets, buildConfigurations, productReleases, productMilestones, Notifications, PncRestClient) {
+
+    function ($log, $state, productDetail, versionDetail, buildConfigurationSets, buildConfigurations, productReleases, productMilestones, records, Notifications, PncRestClient) {
       $log.debug('VersionDetailController >> this=%O, productDetail=%O, ' +
                  'versionDetail=%O, buildConfigurationSets=%0', this, productDetail, versionDetail, buildConfigurationSets);
 
@@ -223,8 +225,6 @@
             Notifications.error('Milestone update failed');
           }
         );
-      };
-
       // Executing a build of a configurationSet
       that.buildConfigSet = function(configSet) {
         $log.debug('**Initiating build of SET: %s**', configSet.name);

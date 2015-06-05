@@ -166,6 +166,7 @@
 
   <pnc-header>
     <pnc-header-title><small>Build Configuration Sets</small></pnc-header-title>
+
     <pnc-header-buttons>
       <button type="button" class="btn btn-lg btn-default" data-toggle="tooltip" title="Create Build Configuration Set" ui-sref="configuration-set.create">
           <i class="pficon pficon-add"></i> Create
@@ -173,46 +174,77 @@
     </pnc-header-buttons>
   </pnc-header>
 
-  <input ng-model="searchBCSText" placeholder="filter buildconfigsets...">
-  <table class="table table-bordered table-striped">
-    <thead>
-      <th>Name</th>
-      <th>Action</th>
-    </thead>
-    <tbody>
-      <tr ng-repeat="buildconfigurationset in versionCtrl.buildconfigurationsets | filter:searchBCSText">
-        <td><a href ui-sref="configuration-set.detail({ configurationSetId: buildconfigurationset.id })">{{ buildconfigurationset.name }}</a></td>
-        <td class="table-data-5-column-even-width">
-           <button type="button" class="btn btn-sm btn-default" data-toggle="tooltip" title="Start Build" ng-click="versionCtrl.buildConfigSet(buildconfigurationset)">
-             <i class="fa fa-play"></i> Build
-           </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="tabbable">  <!-- Only required for left/right tabs -->
+      <ul class="nav nav-tabs">
+      <li class="active"><a href="#tab1" data-toggle="tab">Build Configuration Sets</a></li>
+      <li><a href="#tab2" data-toggle="tab">Build Outputs</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane active" id="tab1">
+        <br/><br/>
+        <input ng-model="searchBCSText" placeholder="filter buildconfigsets...">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <th>Name</th>
+            <th>Action</th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="buildconfigurationset in versionCtrl.buildconfigurationsets | filter:searchBCSText">
+              <td><a href ui-sref="configuration-set.detail({ configurationSetId: buildconfigurationset.id })">{{ buildconfigurationset.name }}</a></td>
+              <td class="table-data-5-column-even-width">
+                 <button type="button" class="btn btn-sm btn-default" data-toggle="tooltip" title="Start Build" ng-click="versionCtrl.buildConfigSet(buildconfigurationset)">
+                   <i class="fa fa-play"></i> Build
+                 </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tab-pane " id="tab2">
+        <div ng-include="'configuration-set/views/configuration-set.detail.build-outputs.html'"></div>
+      </div>
+    </div>
+  </div>
+
 
   <pnc-header>
     <pnc-header-title><small>Build Configurations</small></pnc-header-title>
   </pnc-header>
-  <input ng-model="searchBCText" placeholder="filter buildconfigurations...">
-  <table class="table table-bordered table-striped">
-    <thead>
-      <th>Name</th>
-      <th>Action</th>
-    </thead>
-    <tbody>
-      <tr ng-repeat="configuration in versionCtrl.buildconfigurations | filter:searchBCText">
-        <td>
-          <a ui-sref="configuration.detail.show({configurationId: configuration.id})" href>{{ configuration.name }}</a>
-        </td>
-        <td class="table-data-5-column-even-width">
-           <button type="button" class="btn btn-sm btn-default" data-toggle="tooltip" title="Start Build" ng-click="versionCtrl.buildConfig(configuration)">
-             <i class="fa fa-play"></i> Build
-           </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="tabbable">  <!-- Only required for left/right tabs -->
+      <ul class="nav nav-tabs">
+      <li class="active"><a href="#tab3" data-toggle="tab">Build Configurations</a></li>
+      <li><a href="#tab4" data-toggle="tab">Build Outputs</a></li>
+    </ul>
 
+    <div class="tab-content">
+      <div class="tab-pane active" id="tab3">
+        <br/><br/>
+        <input ng-model="searchBCText" placeholder="filter buildconfigurations...">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <th>Name</th>
+            <th>Action</th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="configuration in versionCtrl.buildconfigurations | filter:searchBCText">
+              <td>
+                <a ui-sref="configuration.detail.show({configurationId: configuration.id})" href>{{ configuration.name }}</a>
+              </td>
+              <td class="table-data-5-column-even-width">
+                 <button type="button" class="btn btn-sm btn-default" data-toggle="tooltip" title="Start Build" ng-click="versionCtrl.buildConfig(configuration)">
+                   <i class="fa fa-play"></i> Build
+                 </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tab-pane " id="tab4">
+        <div ng-include="'configuration-set/views/configuration-set.detail.build-outputs.html'"></div>
+      </div>
+    </div>
+  </div>
 </div>
 
